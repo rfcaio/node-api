@@ -1,3 +1,3 @@
-# node-api
+# About
 
 > A simple Node API.
