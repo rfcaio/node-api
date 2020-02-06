@@ -9,7 +9,6 @@ routes.get('/', (req, res) => {
 })
 
 routes.post('/', (req, res) => {
-  console.log(req)
   const { name } = req.body
   products = products.concat({ id: Date.now(), name })
   res.status(201).json({ message: 'Created.' })
