@@ -1,17 +1,19 @@
 const express = require('express')
 
+const product = require('./models')
+
 const routes = express.Router()
 
-let products = []
-
 routes.get('/', (req, res) => {
-  res.json(products)
+  res.json({ products: [] })
 })
 
 routes.post('/', (req, res) => {
   const { name } = req.body
-  products = products.concat({ id: Date.now(), name })
-  res.status(201).json({ message: 'Created.' })
+  product
+    .create({ name })
+    .then(message => res.status(201).json({ message }))
+    .catch(error => res.status(500).json({ message: error }))
 })
 
 module.exports = routes
