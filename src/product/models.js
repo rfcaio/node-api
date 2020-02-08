@@ -13,6 +13,15 @@ const product = {
         }
       )
     })
+  },
+
+  list: () => {
+    return new Promise((resolve, reject) => {
+      database.all('SELECT * FROM product', (error, products) => {
+        error && reject(new Error('Could not list products'))
+        resolve(products)
+      })
+    })
   }
 }
 

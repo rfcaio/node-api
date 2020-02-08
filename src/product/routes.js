@@ -5,7 +5,10 @@ const product = require('./models')
 const routes = express.Router()
 
 routes.get('/', (req, res) => {
-  res.json({ products: [] })
+  product
+    .list()
+    .then(products => res.json({ products }))
+    .catch(error => res.status(500).json({ message: error }))
 })
 
 routes.post('/', (req, res) => {
