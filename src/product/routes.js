@@ -4,19 +4,23 @@ const product = require('./models')
 
 const routes = express.Router()
 
-routes.get('/', (req, res) => {
-  product
-    .list()
-    .then(products => res.json({ products }))
-    .catch(error => res.status(500).json({ message: error }))
+routes.get('/', async (req, res) => {
+  try {
+    const products = await product.list()
+    res.json({ products })
+  } catch (error) {
+    res.status(500).json({ message: error })
+  }
 })
 
-routes.post('/', (req, res) => {
+routes.post('/', async (req, res) => {
   const { name } = req.body
-  product
-    .create({ name })
-    .then(message => res.status(201).json({ message }))
-    .catch(error => res.status(500).json({ message: error }))
+  try {
+    await product.create({ name })
+    res.status(201).json({ message: 'Created with success.' })
+  } catch (error) {
+    res.status(500).json({ message: error })
+  }
 })
 
 module.exports = routes

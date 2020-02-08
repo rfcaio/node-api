@@ -7,7 +7,7 @@ const product = {
     return new Promise((resolve, reject) => {
       database.run(query, [name, createdAt], error => {
         error && reject(new Error('Could not create product.'))
-        resolve('Created with success.')
+        resolve()
       })
     })
   },
