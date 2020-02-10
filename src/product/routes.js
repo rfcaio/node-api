@@ -33,4 +33,15 @@ routes.delete('/:id', async (req, res) => {
   }
 })
 
+routes.put('/:id', async (req, res) => {
+  const { name } = req.body
+  const { id } = req.params
+  try {
+    await product.update({ id, name })
+    res.status(204).json({ message: 'Updated with success.' })
+  } catch (error) {
+    res.status(500).json({ message: error })
+  }
+})
+
 module.exports = routes

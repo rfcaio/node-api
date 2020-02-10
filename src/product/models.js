@@ -28,6 +28,16 @@ const product = {
         resolve(products)
       })
     })
+  },
+
+  update: ({ id, name }) => {
+    return new Promise((resolve, reject) => {
+      const query = 'UPDATE product SET name = ? WHERE id = ?'
+      database.run(query, [name, id], error => {
+        error && reject(new Error(`Could not update product with ID ${id}.`))
+        resolve()
+      })
+    })
   }
 }
 
