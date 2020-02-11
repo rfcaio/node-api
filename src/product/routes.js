@@ -27,7 +27,7 @@ routes.delete('/:id', async (req, res) => {
   const { id } = req.params
   try {
     await product.delete({ id })
-    res.status(204).json({ message: 'Deleted with success.' })
+    res.status(200).json({ message: 'Deleted with success.' })
   } catch (error) {
     res.status(500).json({ message: error })
   }
@@ -38,7 +38,7 @@ routes.put('/:id', async (req, res) => {
   const { id } = req.params
   try {
     await product.update({ id, name })
-    res.status(204).json({ message: 'Updated with success.' })
+    res.status(200).json({ message: 'Updated with success.' })
   } catch (error) {
     res.status(500).json({ message: error })
   }
