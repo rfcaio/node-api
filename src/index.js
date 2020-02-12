@@ -2,11 +2,13 @@ const express = require('express')
 require('dotenv/config')
 
 const productRoutes = require('./product/routes')
+const userRoutes = require('./user/routes')
 
 const server = express()
 
 server.use(express.json())
 server.use('/product', productRoutes)
+server.use('/user', userRoutes)
 
 server.get('/', (req, res) => {
   res.json({ message: 'You will never win!' })
