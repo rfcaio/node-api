@@ -13,6 +13,15 @@ const user = {
         resolve()
       })
     })
+  },
+
+  list: () => {
+    return new Promise((resolve, reject) => {
+      database.all('SELECT id, email, created_at FROM user', (error, users) => {
+        error && reject(new Error('Could not list users.'))
+        resolve(users)
+      })
+    })
   }
 }
 
