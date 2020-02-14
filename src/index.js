@@ -1,13 +1,18 @@
 const express = require('express')
 require('dotenv/config')
 
+const authentication = require('./authentication')
+
 const authRoutes = require('./auth/routes')
 const productRoutes = require('./product/routes')
 const userRoutes = require('./user/routes')
 
 const server = express()
 
+const exclusions = ['/auth', '/user']
+
 server.use(express.json())
+server.use(authentication({ exclusions }))
 server.use('/auth', authRoutes)
 server.use('/product', productRoutes)
 server.use('/user', userRoutes)

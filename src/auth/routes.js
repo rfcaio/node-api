@@ -10,7 +10,7 @@ routes.post('/', async (req, res) => {
   try {
     const user = await auth.getUserByCredentials({ email, password })
     if (user.length === 0) {
-      res.status(400).json({ message: 'User not found.' })
+      res.status(400).json({ message: 'Authentication failed.' })
     } else {
       const [{ email, id }] = user
       const token = jwt.sign({ email, id }, process.env.JWT_SECRET, {
