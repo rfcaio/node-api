@@ -13,7 +13,7 @@ routes.post('/', async (req, res) => {
       res.status(400).json({ message: 'User not found.' })
     } else {
       const [{ email, id }] = user
-      const token = jwt.sign({ email, id }, 'You will never win!', {
+      const token = jwt.sign({ email, id }, process.env.JWT_SECRET, {
         expiresIn: '1d'
       })
       res.status(200).json({ token })
