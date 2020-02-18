@@ -11,17 +11,11 @@ module.exports = ({ exclusions }) => {
       }
 
       try {
-        await jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
-          if (error) {
-            // TODO: verify error in console
-            res.status(403).json({ message: 'Invalid token.' })
-          } else {
-            const { email, id } = decoded
-            req.decoded = { email, id }
-          }
-        })
+        const { email, id } = jwt.verify(token, process.env.JWT_SECRET)
+        req.decoded = { email, id }
       } catch (error) {
-        res.status(500).send({ message: 'Server error.' })
+        res.status(403).json({ message: 'Invalid token.' })
+        return
       }
     }
     next()
