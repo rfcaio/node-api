@@ -18,6 +18,8 @@ routes.post(
   '/',
   [
     body('name')
+      .notEmpty()
+      .withMessage('Product name should not be empty.')
       .isLength({ min: 6 })
       .withMessage('Product name must have at least 6 characters.')
   ],
