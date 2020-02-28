@@ -39,4 +39,14 @@ routes.post(
   }
 )
 
+routes.delete('/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    await user.delete({ id })
+    res.status(200).json({ message: 'Deleted with success.' })
+  } catch (error) {
+    res.status(500).json({ message: error })
+  }
+})
+
 module.exports = routes

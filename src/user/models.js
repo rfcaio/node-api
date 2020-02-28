@@ -15,6 +15,15 @@ const user = {
     })
   },
 
+  delete: ({ id }) => {
+    return new Promise((resolve, reject) => {
+      database.run('DELETE FROM user WHERE id = ?', [id], error => {
+        error && reject(new Error(`Could not delete user with ID ${id}.`))
+        resolve()
+      })
+    })
+  },
+
   list: () => {
     return new Promise((resolve, reject) => {
       database.all('SELECT id, email, created_at FROM user', (error, users) => {
