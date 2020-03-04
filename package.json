@@ -1,5 +1,6 @@
 {
   "name": "node-api",
+  "version": "0.0.0",
   "description": "A simple Node API.",
   "author": {
     "email": "rfcaio90@gmail.com",
@@ -43,6 +44,5 @@
   "scripts": {
     "lint": "eslint src/",
     "start": "nodemon src/"
-  },
-  "version": "0.0.0"
+  }
 }
