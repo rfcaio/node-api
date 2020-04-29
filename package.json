@@ -38,7 +38,9 @@
   },
   "license": "MIT",
   "lint-staged": {
-    "src/**/*.js": ["eslint"]
+    "src/**/*.js": [
+      "eslint"
+    ]
   },
   "private": true,
   "repository": {
